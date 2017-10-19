@@ -104,7 +104,8 @@ int             pipewrite(struct pipe*, char*, int);
 //PAGEBREAK: 16
 // proc.c
 int             cpuid(void);
-void            exit(void);
+// void            exit(void);     // Lab 1 Part A. You cannot override functions in C =(
+void            exit(int status);  // Lab 1 Part A added by Rick Boshae 
 int             fork(void);
 int             growproc(int);
 int             kill(int);

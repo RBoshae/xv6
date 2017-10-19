@@ -16,7 +16,8 @@ sys_fork(void)
 int
 sys_exit(void)
 {
-  exit();
+  // exit(0); // Lab 1 Part A. Removed and replaced with 'exit(0);' -RB
+  exit(0);   // Lab 1 Part A -RB
   return 0;  // not reached
 }
 

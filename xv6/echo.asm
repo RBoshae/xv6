@@ -47,14 +47,14 @@ main(int argc, char *argv[])
   55:	6a 01                	push   $0x1
   57:	e8 a4 03 00 00       	call   400 <printf>
   5c:	83 c4 10             	add    $0x10,%esp
-  exit();
-  5f:	e8 4e 02 00 00       	call   2b2 <exit>
-  64:	66 90                	xchg   %ax,%ax
-  66:	66 90                	xchg   %ax,%ax
-  68:	66 90                	xchg   %ax,%ax
-  6a:	66 90                	xchg   %ax,%ax
-  6c:	66 90                	xchg   %ax,%ax
-  6e:	66 90                	xchg   %ax,%ax
+  exit(0);
+  5f:	83 ec 0c             	sub    $0xc,%esp
+  62:	6a 00                	push   $0x0
+  64:	e8 49 02 00 00       	call   2b2 <exit>
+  69:	66 90                	xchg   %ax,%ax
+  6b:	66 90                	xchg   %ax,%ax
+  6d:	66 90                	xchg   %ax,%ax
+  6f:	90                   	nop
 
 00000070 <strcpy>:
 #include "user.h"
