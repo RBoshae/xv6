@@ -80,7 +80,7 @@ main(int argc, char *argv[])
     if(fork() > 0)
   5e:	e8 17 03 00 00       	call   37a <fork>
   63:	85 c0                	test   %eax,%eax
-  65:	0f 8f bf 00 00 00    	jg     12a <main+0x12a>
+  65:	0f 8f c6 00 00 00    	jg     131 <main+0x131>
   char data[512];
 
   printf(1, "stressfs starting\n");
@@ -192,18 +192,15 @@ main(int argc, char *argv[])
   wait();
  120:	e8 65 02 00 00       	call   38a <wait>
 
-  exit();
- 125:	e8 58 02 00 00       	call   382 <exit>
- 12a:	89 df                	mov    %ebx,%edi
- 12c:	e9 47 ff ff ff       	jmp    78 <main+0x78>
- 131:	66 90                	xchg   %ax,%ax
- 133:	66 90                	xchg   %ax,%ax
- 135:	66 90                	xchg   %ax,%ax
- 137:	66 90                	xchg   %ax,%ax
- 139:	66 90                	xchg   %ax,%ax
- 13b:	66 90                	xchg   %ax,%ax
- 13d:	66 90                	xchg   %ax,%ax
- 13f:	90                   	nop
+  exit(0);
+ 125:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 12c:	e8 51 02 00 00       	call   382 <exit>
+ 131:	89 df                	mov    %ebx,%edi
+ 133:	e9 40 ff ff ff       	jmp    78 <main+0x78>
+ 138:	66 90                	xchg   %ax,%ax
+ 13a:	66 90                	xchg   %ax,%ax
+ 13c:	66 90                	xchg   %ax,%ax
+ 13e:	66 90                	xchg   %ax,%ax
 
 00000140 <strcpy>:
 #include "user.h"

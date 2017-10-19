@@ -28,11 +28,11 @@ main(int argc, char *argv[])
 
   if(argc < 2){
   1e:	83 fe 01             	cmp    $0x1,%esi
-  21:	7e 1f                	jle    42 <main+0x42>
+  21:	7e 24                	jle    47 <main+0x47>
   23:	90                   	nop
   24:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
     ls(".");
-    exit();
+    exit(0);
   }
   for(i=1; i<argc; i++)
     ls(argv[i]);
@@ -41,7 +41,7 @@ main(int argc, char *argv[])
 
   if(argc < 2){
     ls(".");
-    exit();
+    exit(0);
   }
   for(i=1; i<argc; i++)
   2e:	83 c3 01             	add    $0x1,%ebx
@@ -50,32 +50,29 @@ main(int argc, char *argv[])
 
   if(argc < 2){
     ls(".");
-    exit();
+    exit(0);
   }
   for(i=1; i<argc; i++)
   36:	83 c4 10             	add    $0x10,%esp
   39:	39 de                	cmp    %ebx,%esi
   3b:	75 eb                	jne    28 <main+0x28>
     ls(argv[i]);
-  exit();
-  3d:	e8 40 05 00 00       	call   582 <exit>
+  exit(0);
+  3d:	83 ec 0c             	sub    $0xc,%esp
+  40:	6a 00                	push   $0x0
+  42:	e8 3b 05 00 00       	call   582 <exit>
 main(int argc, char *argv[])
 {
   int i;
 
   if(argc < 2){
     ls(".");
-  42:	83 ec 0c             	sub    $0xc,%esp
-  45:	68 38 0a 00 00       	push   $0xa38
-  4a:	e8 b1 00 00 00       	call   100 <ls>
-    exit();
-  4f:	e8 2e 05 00 00       	call   582 <exit>
-  54:	66 90                	xchg   %ax,%ax
-  56:	66 90                	xchg   %ax,%ax
-  58:	66 90                	xchg   %ax,%ax
-  5a:	66 90                	xchg   %ax,%ax
-  5c:	66 90                	xchg   %ax,%ax
-  5e:	66 90                	xchg   %ax,%ax
+  47:	83 ec 0c             	sub    $0xc,%esp
+  4a:	68 38 0a 00 00       	push   $0xa38
+  4f:	e8 ac 00 00 00       	call   100 <ls>
+    exit(0);
+  54:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+  5b:	e8 22 05 00 00       	call   582 <exit>
 
 00000060 <fmtname>:
 #include "user.h"
