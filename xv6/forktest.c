@@ -17,6 +17,7 @@ void
 forktest(void)
 {
   int n, pid;
+  int status;                            // Lab 1 Part 1b -RB
 
   printf(1, "fork test\n");
 
@@ -34,13 +35,13 @@ forktest(void)
   }
 
   for(; n > 0; n--){
-    if(wait() < 0){
+    if(wait(&status) < 0){                 // Lab 1 Part 1b -RB
       printf(1, "wait stopped early\n");
       exit(0);
     }
   }
 
-  if(wait() != -1){
+  if(wait(&status) != -1){                 // Lab 1 Part 1b -RB
     printf(1, "wait got too many\n");
     exit(0);
   }

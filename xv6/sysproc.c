@@ -25,8 +25,8 @@ int
 sys_wait(void)
 {
   int status = 0;   // Added int status declaration for Lab 1 Part 1b. -RB
-  // return wait(); // Lab 1 Part 1b. -RB
-  return wait(status);
+  // return wait(&status); // Lab 1 Part 1b. -RB
+  return wait(&status);
 }
 
 int

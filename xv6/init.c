@@ -11,6 +11,7 @@ int
 main(void)
 {
   int pid, wpid;
+  int status;                                         // Lab 1 Part 1b -RB 
 
   if(open("console", O_RDWR) < 0){
     mknod("console", 1, 1);
@@ -31,7 +32,7 @@ main(void)
       printf(1, "init: exec sh failed\n");
       exit(0);
     }
-    while((wpid=wait()) >= 0 && wpid != pid)
+    while((wpid = wait(&status)) >= 0 && wpid != pid)  // Lab 1 Part 1b -RB
       printf(1, "zombie!\n");
   }
 }

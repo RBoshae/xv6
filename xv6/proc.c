@@ -224,7 +224,7 @@ fork(void)
 /* Cannot override functions in C
 // Exit the current process.  Does not return.
 // An exited process remains in the zombie state
-// until its parent calls wait() to find out it exited.
+// until its parent calls wait(&status) to find out it exited.
 void
 exit(void)
 {
@@ -250,7 +250,7 @@ exit(void)
 
   acquire(&ptable.lock);
 
-  // Parent might be sleeping in wait().
+  // Parent might be sleeping in wait(&status).
   wakeup1(curproc->parent);
 
   // Pass abandoned children to init.
@@ -272,7 +272,7 @@ exit(void)
 // Lab 1 Part A. Adding void exit(int status) function. -RB
 // Exit the current process.  Does not return.
 // An exited process remains in the zombie state
-// until its parent calls wait() to find out it exited.
+// until its parent calls wait(&status) to find out it exited.
 void
 exit(int status)
 {
@@ -298,7 +298,7 @@ exit(int status)
 
   acquire(&ptable.lock);
 
-  // Parent might be sleeping in wait().
+  // Parent might be sleeping in wait(&status).
   wakeup1(curproc->parent);
 
   // Pass abandoned children to init.
@@ -391,7 +391,7 @@ wait(int *status)
         p->killed = 0;
         p->state = UNUSED;
         release(&ptable.lock);
-        status = 0;             // Lab 1 Part 1b.
+        *status = 0;             // Lab 1 Part 1b.
         return pid;
       }
     }
@@ -399,7 +399,7 @@ wait(int *status)
     // No point waiting if we don't have any children.
     if(!havekids || curproc->killed){
       release(&ptable.lock);
-      status = -1;              // Lab 1 Part 1b.
+      *status = -1;              // Lab 1 Part 1b.
       return -1;
     }
 
