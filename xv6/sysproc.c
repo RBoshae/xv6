@@ -16,15 +16,17 @@ sys_fork(void)
 int
 sys_exit(void)
 {
-  // exit(0); // Lab 1 Part A. Removed and replaced with 'exit(0);' -RB
-  exit(0);   // Lab 1 Part A -RB
-  return 0;  // not reached
+  // exit(0);       // Lab 1 Part 1a. Removed and replaced with 'exit(0);' -RB
+  exit(0);          // Lab 1 Part 1a -RB
+  return 0;         // not reached
 }
 
 int
 sys_wait(void)
 {
-  return wait();
+  int status = 0;   // Added int status declaration for Lab 1 Part 1b. -RB
+  // return wait(); // Lab 1 Part 1b. -RB
+  return wait(status);
 }
 
 int
