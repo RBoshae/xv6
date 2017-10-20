@@ -29,6 +29,14 @@ sys_wait(void)
   return wait(&status);
 }
 
+// Lab 1 Part 1c // Attempting to add wait Pid.
+int 
+sys_waitpid(void)
+{ 
+  int status, pid = 0, options = 0;
+  return waitpid(pid, &status, options);
+}
+
 int
 sys_kill(void)
 {

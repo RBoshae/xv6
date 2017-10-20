@@ -120,6 +120,7 @@ void            sleep(void*, struct spinlock*);
 void            userinit(void);
 // int             wait(void);     // Lab 1 Part 1b. You cannot override functions in C.
 int             wait(int *status); // Lab 1 Part 1b. -RB
+int             waitpid(int pid, int *status, int options); // Lab 1 Part 1c.
 void            wakeup(void*);
 void            yield(void);
 

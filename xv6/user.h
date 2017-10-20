@@ -7,6 +7,7 @@ int fork(void);
 int exit(int status) __attribute__((noreturn));                     // Lab 1 Part 1a. -RB
 // int wait(void);                                                  // Lab 1 Part 1b. -RB
 int wait(int *status);                                              // Lab 1 Part 1b. -RB
+int waitpid(int pid, int *status, int options);                      // Lab 1 Part 1c
 int pipe(int*);
 int write(int, void*, int);
 int read(int, void*, int);
