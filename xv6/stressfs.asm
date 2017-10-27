@@ -82,7 +82,7 @@ main(int argc, char *argv[])
     if(fork() > 0)
   5e:	e8 27 03 00 00       	call   38a <fork>
   63:	85 c0                	test   %eax,%eax
-  65:	0f 8f cf 00 00 00    	jg     13a <main+0x13a>
+  65:	0f 8f dd 00 00 00    	jg     148 <main+0x148>
   int status; // Lab 1 Part 1b. -RB
 
   printf(1, "stressfs starting\n");
@@ -199,15 +199,18 @@ main(int argc, char *argv[])
   exit(0);
  12e:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
  135:	e8 58 02 00 00       	call   392 <exit>
- 13a:	89 df                	mov    %ebx,%edi
- 13c:	e9 37 ff ff ff       	jmp    78 <main+0x78>
- 141:	66 90                	xchg   %ax,%ax
- 143:	66 90                	xchg   %ax,%ax
- 145:	66 90                	xchg   %ax,%ax
- 147:	66 90                	xchg   %ax,%ax
- 149:	66 90                	xchg   %ax,%ax
- 14b:	66 90                	xchg   %ax,%ax
- 14d:	66 90                	xchg   %ax,%ax
+}
+ 13a:	8d 65 f0             	lea    -0x10(%ebp),%esp
+ 13d:	31 c0                	xor    %eax,%eax
+ 13f:	59                   	pop    %ecx
+ 140:	5b                   	pop    %ebx
+ 141:	5e                   	pop    %esi
+ 142:	5f                   	pop    %edi
+ 143:	5d                   	pop    %ebp
+ 144:	8d 61 fc             	lea    -0x4(%ecx),%esp
+ 147:	c3                   	ret    
+ 148:	89 df                	mov    %ebx,%edi
+ 14a:	e9 29 ff ff ff       	jmp    78 <main+0x78>
  14f:	90                   	nop
 
 00000150 <strcpy>:
@@ -1323,7 +1326,7 @@ free(void *ap)
 
   bp = (Header*)ap - 1;
   for(p = freep; !(bp > p && bp < p->s.ptr); p = p->s.ptr)
- 681:	a1 d0 0a 00 00       	mov    0xad0,%eax
+ 681:	a1 e8 0a 00 00       	mov    0xae8,%eax
 static Header base;
 static Header *freep;
 
@@ -1408,7 +1411,7 @@ free(void *ap)
     p->s.ptr = bp;
  6d7:	89 08                	mov    %ecx,(%eax)
   freep = p;
- 6d9:	a3 d0 0a 00 00       	mov    %eax,0xad0
+ 6d9:	a3 e8 0a 00 00       	mov    %eax,0xae8
 }
  6de:	5b                   	pop    %ebx
  6df:	5e                   	pop    %esi
@@ -1440,7 +1443,7 @@ free(void *ap)
   } else
     p->s.ptr = bp;
   freep = p;
- 6fd:	a3 d0 0a 00 00       	mov    %eax,0xad0
+ 6fd:	a3 e8 0a 00 00       	mov    %eax,0xae8
     bp->s.size += p->s.ptr->s.size;
     bp->s.ptr = p->s.ptr->s.ptr;
   } else
@@ -1481,7 +1484,7 @@ malloc(uint nbytes)
   nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
  719:	8b 45 08             	mov    0x8(%ebp),%eax
   if((prevp = freep) == 0){
- 71c:	8b 15 d0 0a 00 00    	mov    0xad0,%edx
+ 71c:	8b 15 e8 0a 00 00    	mov    0xae8,%edx
 malloc(uint nbytes)
 {
   Header *p, *prevp;
@@ -1529,7 +1532,7 @@ malloc(uint nbytes)
       return (void*)(p + 1);
     }
     if(p == freep)
- 771:	39 05 d0 0a 00 00    	cmp    %eax,0xad0
+ 771:	39 05 e8 0a 00 00    	cmp    %eax,0xae8
  777:	89 c2                	mov    %eax,%edx
  779:	75 ed                	jne    768 <malloc+0x58>
   char *p;
@@ -1555,7 +1558,7 @@ malloc(uint nbytes)
  795:	50                   	push   %eax
  796:	e8 e5 fe ff ff       	call   680 <free>
   return freep;
- 79b:	8b 15 d0 0a 00 00    	mov    0xad0,%edx
+ 79b:	8b 15 e8 0a 00 00    	mov    0xae8,%edx
       }
       freep = prevp;
       return (void*)(p + 1);
@@ -1588,7 +1591,7 @@ malloc(uint nbytes)
  7bc:	89 78 04             	mov    %edi,0x4(%eax)
       }
       freep = prevp;
- 7bf:	89 15 d0 0a 00 00    	mov    %edx,0xad0
+ 7bf:	89 15 e8 0a 00 00    	mov    %edx,0xae8
       return (void*)(p + 1);
  7c5:	83 c0 08             	add    $0x8,%eax
     }
@@ -1618,12 +1621,12 @@ malloc(uint nbytes)
   nunits = (nbytes + sizeof(Header) - 1)/sizeof(Header) + 1;
   if((prevp = freep) == 0){
     base.s.ptr = freep = prevp = &base;
- 7d6:	c7 05 d0 0a 00 00 d4 	movl   $0xad4,0xad0
+ 7d6:	c7 05 e8 0a 00 00 ec 	movl   $0xaec,0xae8
  7dd:	0a 00 00 
- 7e0:	c7 05 d4 0a 00 00 d4 	movl   $0xad4,0xad4
+ 7e0:	c7 05 ec 0a 00 00 ec 	movl   $0xaec,0xaec
  7e7:	0a 00 00 
     base.s.size = 0;
- 7ea:	b8 d4 0a 00 00       	mov    $0xad4,%eax
- 7ef:	c7 05 d8 0a 00 00 00 	movl   $0x0,0xad8
+ 7ea:	b8 ec 0a 00 00       	mov    $0xaec,%eax
+ 7ef:	c7 05 f0 0a 00 00 00 	movl   $0x0,0xaf0
  7f6:	00 00 00 
  7f9:	e9 3e ff ff ff       	jmp    73c <malloc+0x2c>

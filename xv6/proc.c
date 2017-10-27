@@ -289,6 +289,7 @@ exit(int status)
       fileclose(curproc->ofile[fd]);
       curproc->ofile[fd] = 0;
     }
+
   }
 
   begin_op();
@@ -309,6 +310,8 @@ exit(int status)
         wakeup1(initproc);
     }
   }
+
+  curproc->exit_status = status;  
 
   // Jump into the scheduler, never to return.
   curproc->state = ZOMBIE;

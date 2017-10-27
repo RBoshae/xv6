@@ -17,7 +17,11 @@ int
 sys_exit(void)
 {
   // exit(0);       // Lab 1 Part 1a. Removed and replaced with 'exit(0);' -RB
-  exit(0);          // Lab 1 Part 1a -RB
+  int exit_status;
+
+  argint(0, &exit_status);
+  exit(exit_status);          // Lab 1 Part 1a -RB
+  
   return 0;         // not reached
 }
 

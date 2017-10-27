@@ -18,7 +18,7 @@
 8010a558 panicked
 801003f0 consputc
 80100580 printint
-80107090 digits.1603
+80107090 digits.1604
 00000000 exec.c
 00000000 file.c
 00000000 fs.c
@@ -55,9 +55,9 @@
 00000000 pipe.c
 00000000 proc.c
 801035b0 allocproc
-8010a000 first.1658
+8010a000 first.1659
 8010a5b8 initproc
-80107680 states.1684
+80107680 states.1685
 00000000 sleeplock.c
 00000000 spinlock.c
 00000000 string.c
@@ -273,7 +273,7 @@
 80105edc vector77
 80101500 ialloc
 80106317 vector180
-801154a4 kpgdir
+801155a4 kpgdir
 80106467 vector208
 801027d0 cmostime
 80105c20 uartintr
@@ -282,7 +282,7 @@
 801062e7 vector176
 801063bf vector194
 80105d47 vector32
-801154a8 end
+801155a8 end
 801063fb vector199
 801060cb vector131
 80106677 vector252
@@ -318,7 +318,7 @@
 80105d74 vector37
 80106443 vector205
 80106233 vector161
-80114c60 tickslock
+80114d60 tickslock
 80103390 pipewrite
 801046c0 strncpy
 80105ea6 vector71
@@ -395,7 +395,7 @@
 80105dc5 vector46
 801060ef vector134
 8010651b vector223
-80114ca0 idt
+80114da0 idt
 801064df vector218
 801036c0 pinit
 80106cd0 deallocuvm
@@ -410,7 +410,7 @@
 801000d0 bread
 8010609e vector127
 80103490 piperead
-801154a0 ticks
+801155a0 ticks
 801063a7 vector192
 8010626f vector166
 801009a0 consoleinit
