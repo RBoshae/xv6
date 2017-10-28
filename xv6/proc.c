@@ -394,7 +394,7 @@ wait(int *status)
         p->killed = 0;
         p->state = UNUSED;
         release(&ptable.lock);
-        *status = &p->exit_status; // LEFT OFF HERE
+        status = &p->exit_status; // LEFT OFF HERE
 	return pid;
       }
     }
