@@ -394,8 +394,8 @@ wait(int *status)
         p->killed = 0;
         p->state = UNUSED;
         release(&ptable.lock);
-        *status = 0;             // Lab 1 Part 1b.
-        return pid;
+        *status = &p->exit_status; // LEFT OFF HERE
+	return pid;
       }
     }
 

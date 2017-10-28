@@ -28,8 +28,9 @@ sys_exit(void)
 int
 sys_wait(void)
 {
-  int status = 0;   // Added int status declaration for Lab 1 Part 1b. -RB
+  int *status;   // Added int status declaration for Lab 1 Part 1b. -RB
   // return wait(&status); // Lab 1 Part 1b. -RB
+  argptr(0,&status,0); // Lab 1 Part 1b. Just added today.
   return wait(&status);
 }
 

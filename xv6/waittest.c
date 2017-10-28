@@ -9,8 +9,9 @@
 //#include "memlayout.h"
 
 int main () {
-
-  exit(1);
-  printf(1, "Should not be able to see this. Error with exit call.");
+  int child_status 
+  printf(1, "Child Status was: %d" child_status);
+  wait(child_status);
+  printf(1, "Child Status is now: %d" child_status);
   return 0;
 }
