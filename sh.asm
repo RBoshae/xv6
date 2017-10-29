@@ -2769,10 +2769,12 @@ SYSCALL(uptime)
      fba:	b8 0e 00 00 00       	mov    $0xe,%eax
      fbf:	cd 40                	int    $0x40
      fc1:	c3                   	ret    
-     fc2:	66 90                	xchg   %ax,%ax
-     fc4:	66 90                	xchg   %ax,%ax
-     fc6:	66 90                	xchg   %ax,%ax
-     fc8:	66 90                	xchg   %ax,%ax
+
+00000fc2 <waitpid>:
+SYSCALL(waitpid)
+     fc2:	b8 16 00 00 00       	mov    $0x16,%eax
+     fc7:	cd 40                	int    $0x40
+     fc9:	c3                   	ret    
      fca:	66 90                	xchg   %ax,%ax
      fcc:	66 90                	xchg   %ax,%ax
      fce:	66 90                	xchg   %ax,%ax

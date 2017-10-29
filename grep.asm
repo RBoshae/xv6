@@ -1253,10 +1253,12 @@ SYSCALL(uptime)
  65a:	b8 0e 00 00 00       	mov    $0xe,%eax
  65f:	cd 40                	int    $0x40
  661:	c3                   	ret    
- 662:	66 90                	xchg   %ax,%ax
- 664:	66 90                	xchg   %ax,%ax
- 666:	66 90                	xchg   %ax,%ax
- 668:	66 90                	xchg   %ax,%ax
+
+00000662 <waitpid>:
+SYSCALL(waitpid)
+ 662:	b8 16 00 00 00       	mov    $0x16,%eax
+ 667:	cd 40                	int    $0x40
+ 669:	c3                   	ret    
  66a:	66 90                	xchg   %ax,%ax
  66c:	66 90                	xchg   %ax,%ax
  66e:	66 90                	xchg   %ax,%ax

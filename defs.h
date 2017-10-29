@@ -118,9 +118,9 @@ void            sched(void);
 void            setproc(struct proc*);
 void            sleep(void*, struct spinlock*);
 void            userinit(void);
-// int             wait(void);     // Lab 1 Part 1b. You cannot override functions in C.
-int             wait(int *status); // Lab 1 Part 1b. -RB
-int             waitpid(int pid, int *status, int options); // Lab 1 Part 1c.
+/* int             wait(void);*/                            // Removed Lab 1 Part 1b. Cannot override functions in C. -RB
+int             wait(int *status);                          // Added Lab 1 Part 1b. -RB
+int             waitpid(int pid, int *status, int options); // Added Lab 1 Part 1c. -RB
 void            wakeup(void*);
 void            yield(void);
 

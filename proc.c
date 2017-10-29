@@ -12,9 +12,33 @@ struct {
   struct proc proc[NPROC];
 } ptable;
 
+/////////////INFO ABOUT STRUCT///////////////////////////////////////////
+// Anything after the closing curly brace of the struct definition 
+// would declare a variable of that type
+// i.e., struct foo {int n;} a_global_variable;
+
+/////////////////////////////////////////////////////////////////////////
+
+/////////////INFO ABOUT STATIC VARIABLES/////////////////////////////////
+// A static variable inside a function keeps its value between invocations.
+// A static global variable or a function is "seen" only in the file it's declared in
+// In the C programming language, static is used with global variables and functions 
+// to set their scope to the containing file. In local variables, static is used to 
+// store the variable in the statically allocated memory instead of the automatically 
+// allocated memory. While the language does not dictate the implementation of either 
+// type of memory, statically allocated memory is typically reserved in data segment 
+// of the program at compile time, while the automatically allocated memory is 
+// normally implemented as a transient call stack.
+/////////////////////////////////////////////////////////////////////////
 static struct proc *initproc;
 
 int nextpid = 1;
+
+//////////////INFO ABOUT EXTERN////////////////////////////////////////////////////
+// extern keyword applies to C variables (data objects) and C functions. Basically 
+// extern keyword extends the visibility of the C variables and C functions. Probably 
+// that’s is the reason why it was named as extern
+//////////////////////////////////////////////////////////////////////////////////
 extern void forkret(void);
 extern void trapret(void);
 
@@ -415,21 +439,20 @@ wait(int *status)
 // Wait for a child process to exit and return its pid.
 // Return -1 if this process has no children.
 int
-waitpid(int pid, int *status, int options) // Working here
+waitpid(int pid, int *status, int options) 
 {
   struct proc *p;
- //  int havekids, pid; // Original Code
-  int havekids;         // Lab 1 Part 1c -RB
+  int process_found;         
   struct proc *curproc = myproc();
   
   acquire(&ptable.lock);
   for(;;){
-    // Scan through table looking for exited children.
-    havekids = 0;
+    // Scan through table looking for exited process.
+    process_found = 0;
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-      if(p->parent != curproc)
+      if(p->pid != pid)
         continue;
-      havekids = 1;
+      process_found = 1;
       if(p->state == ZOMBIE){
         // Found one.
         pid = p->pid;
@@ -442,13 +465,15 @@ waitpid(int pid, int *status, int options) // Working here
         p->killed = 0;
         p->state = UNUSED;
         release(&ptable.lock);
+        *status = p->exit_status;
         return pid;
       }
     }
 
     // No point waiting if we don't have any children.
-    if(!havekids || curproc->killed){
+    if(!process_found || curproc->killed){
       release(&ptable.lock);
+      *status = -1;
       return -1;
     }
 

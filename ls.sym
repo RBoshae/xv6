@@ -21,6 +21,7 @@
 00000d98 base
 00000360 strcpy
 00000080 fmtname
+00000642 waitpid
 000006f0 printf
 00000570 memmove
 000005ea mknod

@@ -19,6 +19,7 @@
 00000e20 freep
 00000e24 base
 00000380 strcpy
+00000662 waitpid
 00000710 printf
 00000590 memmove
 00000170 matchhere

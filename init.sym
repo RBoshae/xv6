@@ -20,6 +20,7 @@
 00000ab0 freep
 00000ab4 base
 00000100 strcpy
+000003e2 waitpid
 00000490 printf
 00000aa8 argv
 00000310 memmove

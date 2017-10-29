@@ -22,6 +22,7 @@
 00006ba4 base
 00004370 strcpy
 00000fa0 exitwait
+00004652 waitpid
 00004700 printf
 00006b00 stdout
 00003f00 bigargtest
