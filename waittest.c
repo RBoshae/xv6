@@ -9,9 +9,9 @@
 //#include "memlayout.h"
 
 int main () {
-  int child_status 
-  printf(1, "Child Status was: %d" child_status);
-  wait(child_status);
-  printf(1, "Child Status is now: %d" child_status);
+ // int child_status 
+ // printf(1, "Child Status was: %d" child_status);
+ // wait(child_status);
+ // printf(1, "Child Status is now: %d" child_status);
   return 0;
 }
