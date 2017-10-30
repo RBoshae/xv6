@@ -397,7 +397,8 @@ wait(int *status)
   struct proc *p;
   int havekids, pid;
   struct proc *curproc = myproc();
-  
+  //cprintf("value of passed in status %d \r\n", status);
+  //cprintf("value of passed in *status %d \r\n", *status);
   acquire(&ptable.lock);
   for(;;){
     // Scan through table looking for exited children.
@@ -418,8 +419,11 @@ wait(int *status)
         p->killed = 0;
         p->state = UNUSED;
         release(&ptable.lock);
-        status = &p->exit_status; // LEFT OFF HERE
-	return pid;
+        //status = &p->exit_status; // LEFT OFF HERE
+//	cprintf("p->exit_status %d \r\n", p->exit_status);
+        *status = p->exit_status;
+ //       cprintf("*status %d \r\n", *status);
+        return pid;
       }
     }
 

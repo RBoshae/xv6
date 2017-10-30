@@ -27,11 +27,11 @@ sys_exit(void)
 int
 sys_wait(void)
 {
-  int child_exit_status;                     // Added int status declaration for Lab 1 Part 1b. -RB
+  int *child_exit_status;                     // Added int status declaration for Lab 1 Part 1b. -RB
   // return wait(&status);                   // Removed Lab 1 Part 1b. -RB
+  argptr(0, (char**)&child_exit_status, sizeof(child_exit_status)); // Added Lab 1 Part 1b.
   
-  argptr(0, (char**) &child_exit_status, 0); // Added Lab 1 Part 1b.
-  return wait(&child_exit_status);
+  return wait(child_exit_status);
 }
 
 // Lab 1 Part 1c // Added waitpid. -RB
@@ -51,12 +51,13 @@ sys_waitpid(void)
   */
 
   int pid;
-  int exit_status;
+  int *exit_status;
   int options = 0;
  
-  argint(0, &pid);
-  argptr(1,(char**)&exit_status,0); 
-  return waitpid(pid, &exit_status, options);
+  argint(0, &pid); 
+  argptr(1, (char**)&exit_status, sizeof(exit_status)); // Added Lab 1 Part 1b.
+  
+  return waitpid(pid, exit_status, options);
 }
 // End of Adding waitpid
 
