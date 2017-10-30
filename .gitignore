@@ -1,5 +1,72 @@
-#ignore all objects
+# ignore all objects
 *.o
 
-#ignore all dependency files
+# ignore all dependency files
 *.d
+
+# ignore misc. files
+_cat
+_echo
+_forktest
+_grep
+_init
+_kill
+_ln
+_ls
+_mkdir
+_rm
+_sh
+_stressfs
+_tatestharness
+_usertests
+_waittest
+_wc
+_zombie
+bootblock
+bootblock.asm
+cat.asm
+cat.sym
+echo.asm
+echo.sym
+entryother
+entryother.asm
+forktest.asm
+fs.img
+grep.asm
+grep.sym
+init.asm
+init.sym
+initcode
+initcode.asm
+initcode.out
+kernel
+kernel.asm
+kernel.sym
+kill.asm
+kill.sym
+ln.asm
+ln.sym
+ls.asm
+ls.sym
+mkdir.asm
+mkdir.sym
+mkfs
+rm.asm
+rm.sym
+sh.asm
+sh.sym
+stressfs.asm
+stressfs.sym
+tatestharness.asm
+tatestharness.sym
+usertests.asm
+usertests.sym
+vectors.S
+waittest.asm
+waittest.sym
+wc.asm
+wc.sym
+xv6.img
+zombie.asm
+zombie.sym
+
